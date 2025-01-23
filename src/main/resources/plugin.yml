@@ -1,0 +1,8 @@
+main: dev.kyriji.creative.TritonCreative
+name: TritonCreative
+version: 1.0.0
+depend:
+  - TritonDependencies
+  - TritonCoreSpigot
+commands:
+  ctest:
