@@ -16,7 +16,7 @@ public class SpeedBuildCommand implements CommandExecutor {
 		if (!(sender instanceof Player player)) return false;
 
 		if (!player.hasPermission("tritonmc.admin")) {
-			Out.send(player, "&c&lERROR!&7 You do not have permission to use this command");
+			Out.send(player, "&c&lERROR!&7 You do not have permission to use this command!");
 			return false;
 		}
 
@@ -30,20 +30,20 @@ public class SpeedBuildCommand implements CommandExecutor {
 		}
 
 		if (args[0].equalsIgnoreCase("enable")) {
-			if (SpeedBuildManager.isEnabled) {
-				Out.send(player, "&c&lERROR!&7 Speed build is already enabled");
+			if (SpeedBuildManager.isSpeedBuildOngoing()) {
+				Out.send(player, "&c&lERROR!&7 Speed building is already in progress!");
 				return false;
 			}
 
 			if (args.length == 1) {
-				Out.send(player, "&c&lERROR!&7 Please specify a time (format: #m#s, #m, or #s)");
+				Out.send(player, "&c&lERROR!&7 Please specify a time (format: #m#s, #m, or #s)!");
 				return false;
 			}
 
 			try {
 				long durationMillis = parseTime(args[1]);
 				if (durationMillis <= 0) {
-					Out.send(player, "&c&lERROR!&7 Time must be positive");
+					Out.send(player, "&c&lERROR!&7 Time must be positive!");
 					return false;
 				}
 
@@ -53,22 +53,22 @@ public class SpeedBuildCommand implements CommandExecutor {
 				long seconds = (durationMillis % (60 * 1000)) / 1000;
 				if (minutes > 0) {
 					if (seconds > 0) {
-						Out.broadcast(String.format("&3&lSPEED BUILD!&7 Speed build enabled for %d minutes and %d seconds", minutes, seconds));
+						Out.broadcast(String.format("&3&lSPEED BUILD!&7 Speed build enabled for %d minutes and %d seconds!", minutes, seconds));
 					} else {
-						Out.broadcast(String.format("&3&lSPEED BUILD!&7 Speed build enabled for %d minutes", minutes));
+						Out.broadcast(String.format("&3&lSPEED BUILD!&7 Speed build enabled for %d minutes!", minutes));
 					}
 				} else {
-					Out.broadcast(String.format("&3&lSPEED BUILD!&7 Speed build enabled for %d seconds", seconds));
+					Out.broadcast(String.format("&3&lSPEED BUILD!&7 Speed build enabled for %d seconds!", seconds));
 				}
 			} catch (IllegalArgumentException e) {
-				Out.send(player, "&c&lERROR!&7 Invalid time format");
+				Out.send(player, "&c&lERROR!&7 Invalid time format!");
 				return false;
 			}
 		} else if (args[0].equalsIgnoreCase("disable")) {
 			SpeedBuildManager.isEnabled = false;
 			Out.send(player, "&3&lSPEED BUILD!&7 Speed build disabled!");
 		} else {
-			Out.send(player, "&c&lERROR!&7 Invalid argument");
+			Out.send(player, "&c&lERROR!&7 Invalid subcommand argument!");
 		}
 		return true;
 	}

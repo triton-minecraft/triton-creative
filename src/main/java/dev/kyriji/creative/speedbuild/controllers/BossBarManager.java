@@ -38,7 +38,7 @@ public class BossBarManager implements Listener {
 
 				if (SpeedBuildManager.isSpeedBuildingOver()) {
 					bossBar.setColor(BarColor.RED);
-					bossBar.setTitle(ChatColor.GOLD + "Speed " + ChatColor.DARK_AQUA + "Build" + ChatColor.DARK_GRAY + " - " + ChatColor.WHITE + "Time Elapsed");
+					bossBar.setTitle(ChatColor.GOLD + "Speed " + ChatColor.DARK_AQUA + "Build" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + "Time Elapsed");
 					bossBar.setProgress(1.0);
 					bossBar.setVisible(true);
 					return;
@@ -52,7 +52,8 @@ public class BossBarManager implements Listener {
 						String.format("%dm %ds", minutes, seconds) :
 						String.format("%ds", seconds);
 
-				bossBar.setTitle(ChatColor.GOLD + "Speed " + ChatColor.DARK_AQUA + "Build" + ChatColor.DARK_GRAY + " - " + ChatColor.WHITE + timeString + " remaining");
+				bossBar.setColor(BarColor.GREEN);
+				bossBar.setTitle(ChatColor.GOLD + "Speed " + ChatColor.DARK_AQUA + "Build" + ChatColor.DARK_GRAY + " - " + ChatColor.GRAY + timeString + " remaining");
 				double progress = (double) timeLeft / (SpeedBuildManager.buildTimeEnd - SpeedBuildManager.buildTimeStart);
 				bossBar.setProgress(Math.max(0.0, Math.min(1.0, progress)));
 				bossBar.setVisible(true);

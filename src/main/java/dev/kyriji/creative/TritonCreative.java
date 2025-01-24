@@ -19,8 +19,11 @@ public class TritonCreative extends JavaPlugin {
 
 		getCommand("speedbuild").setExecutor(new SpeedBuildCommand());
 
-		for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-			BossBarManager.bossBar.addPlayer(onlinePlayer);
-		}
+		for (Player onlinePlayer : Bukkit.getOnlinePlayers()) BossBarManager.bossBar.addPlayer(onlinePlayer);
+	}
+
+	@Override
+	public void onDisable() {
+		for (Player onlinePlayer : Bukkit.getOnlinePlayers()) BossBarManager.bossBar.removePlayer(onlinePlayer);
 	}
 }
